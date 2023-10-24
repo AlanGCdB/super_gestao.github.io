@@ -3,6 +3,7 @@
 @section('titulo', $titulo)
 
 @section('conteudo')
+
     <div class="conteudo-pagina">
         <div class="titulo-pagina">
             <h1>Login</h1>
@@ -10,14 +11,23 @@
 
         <div class="informacao-pagina">
             <div id="form_login">
+                <div class="erro-log">
+                    {{ isset($erro) && $erro != '' ? $erro : '' }}
+                </div>
                 <form action="{{ route('site.login') }}" method="post">
                     @csrf
                     <input type="text" value="{{ old('usuario') }}" name="usuario" id="usuario" class="borda-preta"
                         placeholder="Usuário">
+                    {{-- Resposta erro --}}
                     {{ $errors->has('usuario') ? $errors->first('usuario') : '' }}
+                    {{-- Resposta erro --}}
+
                     <input type="password" value="{{ old('senha') }}" name="senha" id="senha" class="borda-preta"
                         placeholder="Senha">
+                    {{-- Resposta erro --}}
                     {{ $errors->has('senha') ? $errors->first('senha') : '' }}
+                    {{-- Resposta erro --}}
+
                     <button type="submit" class="borda-preta">Acessar</button>
                 </form>
             </div>

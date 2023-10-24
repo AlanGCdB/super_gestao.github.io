@@ -24,9 +24,9 @@
     <div class="rodape">
         <div class="redes-sociais">
             <h2>Redes sociais</h2>
-            <img src="{{ asset('img/facebook.png') }}">
-            <img src="{{ asset('img/linkedin.png') }}">
-            <img src="{{ asset('img/youtube.png') }}">
+            <img src="{{ asset('img/facebook.png') }}" alt="facebook">
+            <img src="{{ asset('img/linkedin.png') }}" alt="linkedin">
+            <img src="{{ asset('img/youtube.png') }}" alt="youtube">
         </div>
         <div class="area-contato">
             <h2>Contato</h2>
@@ -36,7 +36,7 @@
         </div>
         <div class="localizacao">
             <h2>Localização</h2>
-            <img src="{{ asset('img/mapa.png') }}">
+            <img src="{{ asset('img/mapa.png') }}" alt="mapa">
         </div>
     </div>
 @endsection

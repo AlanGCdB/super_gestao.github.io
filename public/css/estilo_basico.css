@@ -1,8 +1,13 @@
-html,
-body {
-    height: 100%;
+*,
+*::before,
+*::after {
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
     font-family: 'Roboto', sans-serif;
+
 }
 
 p,
@@ -33,13 +38,22 @@ button {
     color: #333;
 }
 
-.erro {
-    position: absolute;
-    top: 0;
-    left: 0;
+table {
     width: 100%;
-    background: red;
 }
+
+.erro-log,
+.msg-valido h1 {
+    color: #268fd0;
+    padding: 10px 15px;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.form-fornecedor {
+    width: 90%;
+    margin: 0 auto;
+}
+
 
 .texto-branco {
     color: #ffffff;
@@ -51,6 +65,12 @@ button {
 
 .borda-preta {
     border: solid 1px #333;
+    outline: none;
+}
+
+form input:focus {
+    border-radius: 4px;
+    border-color: #7ab829;
 }
 
 button {
@@ -112,7 +132,6 @@ button:hover {
 }
 
 .menu a {
-    text-decoration: none;
     padding: 14px 16px;
     color: #333;
 }
@@ -120,6 +139,8 @@ button:hover {
 .menu a:hover {
     color: #268fd0;
 }
+
+
 
 .conteudo-destaque {
     width: 100%;
@@ -171,11 +192,20 @@ button:hover {
     margin-bottom: 100px;
 }
 
-.titulo-pagina {
-    padding: 100px 0px 60px 0px;
+.titulo-pagina,
+.titulo-pagina-2 {
     background-color: #2a9ee2;
     text-align: center;
+    color: black;
+    padding-top: 50px;
 }
+
+.titulo-pagina h1,
+.titulo-pagina-2 p {
+    padding: 25px 30px;
+}
+
+
 
 .informacao-pagina {
     text-align: center;
@@ -210,4 +240,22 @@ span {
 
 .redes-sociais img {
     margin: 0px 15px 0px 15px;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination li {
+    display: inline;
+    margin: 3px;
+}
+
+
+.pagination li a {
+    color: black;
+}
+
+.page-link {
+    color: #7ab829;
 }
