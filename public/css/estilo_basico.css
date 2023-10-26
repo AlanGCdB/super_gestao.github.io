@@ -40,7 +40,23 @@ button {
 
 table {
     width: 100%;
+    border: none;
 }
+
+tr {
+    border: none;
+}
+
+td,
+th {
+    padding: 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.322);
+    border-top: 0;
+    border-left: 0;
+    border-radius: 5px;
+    text-align: left;
+}
+
 
 .erro-log,
 .msg-valido h1 {
@@ -49,10 +65,21 @@ table {
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.form-fornecedor {
+.form-fornecedor,
+.visualizar-produtos,
+.fornecedor-listar {
     width: 90%;
     margin: 0 auto;
 }
+
+.visualizar-produtos,
+.fornecedor-listar {
+    width: 800px;
+}
+
+
+
+
 
 
 .texto-branco {

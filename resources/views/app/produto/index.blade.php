@@ -7,7 +7,7 @@
     <div class="conteudo-pagina">
 
         <div class="titulo-pagina-2">
-            <p>Listagem de</p>
+            <p>Listagem de Produtos</p>
         </div>
 
         <div class="menu">
@@ -19,15 +19,13 @@
 
         <div class="informacao-pagina">
             <div class="form-fornecedor">
-                <table border="1">
+                <table>
                     <thead>
                         <tr>
                             <th>Nome:</th>
                             <th>Descrição:</th>
                             <th>Peso:</th>
                             <th>Unidade ID:</th>
-                            <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,8 +36,17 @@
                                 <td>{{ $produto->peso }}</td>
                                 <td>{{ $produto->unidade_id }}</td>
 
-                                <td><a>Excluir</a></td>
-                                <td><a>Editar</a></td>
+                                <td><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></td>
+                                <td>
+                                    <form id="from_{{ $produto->id }}"
+                                        action="{{ route('produto.destroy', ['produto' => $produto->id]) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="#"
+                                            onclick="document.getElementById('from_{{ $produto->id }}').submit()">Excluir</a>
+                                    </form>
+                                </td>
+                                <td><a href="{{ route('produto.edit', ['produto' => $produto->id]) }}">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -18,16 +18,14 @@
         </div>
 
         <div class="informacao-pagina">
-            <div class="form-fornecedor">
-                <table border="1">
+            <div class="fornecedor-listar">
+                <table border="1" class="tabela">
                     <thead>
                         <tr>
                             <th>Nome:</th>
                             <th>Site:</th>
                             <th>Estado:</th>
                             <th>E-mail:</th>
-                            <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

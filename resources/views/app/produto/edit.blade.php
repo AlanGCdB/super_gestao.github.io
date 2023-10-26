@@ -6,7 +6,7 @@
     <div class="conteudo-pagina">
 
         <div class="titulo-pagina-2">
-            <p>Adicionar - Produto</p>
+            <p>Editar - Produto</p>
         </div>
 
         <div class="menu">
@@ -17,8 +17,11 @@
         </div>
 
         <div class="informacao-pagina">
-            @component('app.produto._components.form_create_edit', ['unidades' => $unidades])
-            @endcomponent
+
+            <div class="form-fornecedor">
+                @component('app.produto._components.form_create_edit', ['unidades' => $unidades, 'produto' => $produto])
+                @endcomponent
+            </div>
         </div>
 
     </div>
