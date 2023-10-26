@@ -68,7 +68,9 @@ table {
     outline: none;
 }
 
-form input:focus {
+form input:focus,
+select:focus,
+option:focus {
     border-radius: 4px;
     border-color: #7ab829;
 }
@@ -117,6 +119,7 @@ button:hover {
 .menu {
     float: right;
     margin-right: 40px;
+    margin-top: 7px;
 }
 
 .menu li {

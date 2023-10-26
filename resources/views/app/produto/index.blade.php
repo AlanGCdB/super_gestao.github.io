@@ -12,7 +12,7 @@
 
         <div class="menu">
             <ul>
-                <li><a>Novo</a></li>
+                <li><a href="{{ route('produto.create') }}">Novo</a></li>
                 <li><a>Consulta</a></li>
             </ul>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
+use App\Unidade;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -26,6 +27,9 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        $unidades = Unidade::all();
+
+        return view('app.produto.create', ['unidades' => $unidades]);
     }
 
     /**
@@ -35,41 +39,52 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        Produto::create($request->all());
+
+        return redirect()->route('produto.index');
     }
 
     /**
      * Display the specified resource.
      *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show(Produto $produto)
+    public function show($id)
     {
     }
 
     /**
      * Show the form for editing the specified resource.
      *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produto $produto)
+    public function edit($id)
     {
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, $id)
     {
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $produto)
+    public function destroy($id)
     {
     }
 }
