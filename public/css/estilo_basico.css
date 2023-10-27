@@ -43,7 +43,8 @@ table {
     border: none;
 }
 
-tr {
+tr,
+.null {
     border: none;
 }
 

@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
-use App\Produto;
+use App\ItemDetalhe;
+use App\ProdutoDetalhe;
 use App\Unidade;
 use Illuminate\Http\Request;
 
-class ProdutoController extends Controller
+class ProdutoDetalheController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $produtos = Item::with(['itemDetalhe'])->paginate(10);
-
-        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
     /**
@@ -30,7 +27,7 @@ class ProdutoController extends Controller
     {
         $unidades = Unidade::all();
 
-        return view('app.produto.create', ['unidades' => $unidades]);
+        return view('app.produto_detalhe.create', ['unidades' => $unidades]);
     }
 
     /**
@@ -40,54 +37,60 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        Produto::create($request->all());
+        ProdutoDetalhe::create($request->all());
 
-        return redirect()->route('produto.index');
+        echo 'Cadastro realizado com sucesso!';
     }
 
     /**
      * Display the specified resource.
      *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show(Produto $produto)
+    public function show($id)
     {
-        return view('app.produto.show', ['produto' => $produto]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produto $produto)
+    public function edit($id)
     {
+        $produtoDetalhe = ItemDetalhe::with(['item'])->find($id);
         $unidades = Unidade::all();
 
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto_detalhe.edit', ['unidades' => $unidades, 'produto_detalhe' => $produtoDetalhe]);
     }
 
     /**
      * Update the specified resource in storage.
      *
+     * @param App\ProdutoDetalhe $produtoDetalhe
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, ProdutoDetalhe $produtoDetalhe)
     {
-        $produto->update($request->all());
+        $produtoDetalhe->update($request->all());
 
-        return redirect()->route('produto.show', ['produto' => $produto->id]);
+        // return redirect()->route('app.produto_detalhe.list');
+        echo 'Atualizou';
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $produto)
+    public function destroy($id)
     {
-        $produto->forceDelete();
-
-        return redirect()->route('produto.index');
     }
 }
