@@ -1,26 +1,23 @@
 @extends('app.layouts.basico')
 
-@section('titulo', 'Produto')
+@section('titulo', 'pedido')
 
 @section('conteudo')
     <div class="conteudo-pagina">
 
         <div class="titulo-pagina-2">
-            <p>Adicionar - Produto</p>
+            <p>Adicionar - pedido</p>
         </div>
 
         <div class="menu">
             <ul>
-                <li><a href="{{ route('produto.index') }}">Voltar</a></li>
+                <li><a href="{{ route('pedido.index') }}">Voltar</a></li>
                 <li><a href="">Consulta</a></li>
             </ul>
         </div>
 
         <div class="informacao-pagina">
-            @component('app.produto._components.form_create_edit', [
-                'unidades' => $unidades,
-                'fornecedores' => $fornecedores,
-            ])
+            @component('app.pedido._components.form_create_edit', ['clientes' => $clientes])
             @endcomponent
         </div>
 

@@ -9,6 +9,19 @@
                 @csrf
     @endif
 
+    <select name="fornecedor_id">
+        <option>-- Selecione um Fornecedor --</option>
+        @foreach ($fornecedores as $fornecedor)
+            <option
+                value="{{ $fornecedor->id }}"{{ ($produto->fornecedor_id ?? old('fornecedor_id')) == $fornecedor->id ? 'selected' : '' }}>
+                {{ $fornecedor->nome }}
+            </option>
+        @endforeach
+    </select>
+    {{ $errors->has('fornecedor_id') ? $errors->first('fornecedor_id') : '' }}
+
+
+
     <input type="text" name="nome" id="nome" class="borda-preta" placeholder="Nome:"
         value="{{ $produto->nome ?? old('nome') }}">
 
@@ -29,7 +42,7 @@
         <option>-- Selecione a Unidade de Medida --</option>
         @foreach ($unidades as $unidade)
             <option value="{{ $unidade->id }}"
-                {{ $produto->unidade_id ?? old('unidade_id') == $unidade->id ? 'selected' : '' }}>
+                {{ ($produto->unidade_id ?? old('unidade_id')) == $unidade->id ? 'selected' : '' }}>
                 {{ $unidade->descricao }}</option>
         @endforeach
 

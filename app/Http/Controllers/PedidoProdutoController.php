@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Cliente;
+use App\Pedido;
+use App\PedidoProduto;
+use App\Produto;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class PedidoProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $clientes = Cliente::paginate(10);
-
-        return view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]);
     }
 
     /**
@@ -24,9 +23,12 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Pedido $pedido)
     {
-        return view('app.cliente.create');
+        $produtos = Produto::all();
+
+        // $pedido->produtos; //eager loading
+        return view('app.pedido_produto.create', ['pedido' => $pedido, 'produtos' => $produtos]);
     }
 
     /**
@@ -34,24 +36,26 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Pedido $pedido)
     {
         $regras = [
-            'nome' => 'required|min:3|max:40',
+            'produto_id' => 'exists:produtos,id',
+            'quantidade' => 'required',
         ];
         $feedback = [
-            'required' => 'O campo :attribute deve ser preenchido',
-            'nome.min' => 'O campo nome deve ter no mínimo 3 caracteres',
-            'nome.max' => 'O campo nome deve ter no máximo 40 caracteres',
+            'produto_id.exists' => 'O produto informado não existe',
+            'required' => 'O campo :attribute deve possuir um valor válido',
         ];
-
         $request->validate($regras, $feedback);
 
-        $cliente = new Cliente();
-        $cliente->nome = $request->get('nome');
-        $cliente->save();
+        $pedido->produtos()->attach(
+            $request->get('produto_id'),
+            [
+                'quantidade' => $request->get('quantidade'),
+            ]
+        );
 
-        return redirect()->route('cliente.index');
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
     }
 
     /**
@@ -90,11 +94,12 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PedidoProduto $pedidoProduto, $pedido_id)
     {
+        $pedidoProduto->forceDelete();
+
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido_id]);
     }
 }

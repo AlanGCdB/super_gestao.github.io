@@ -19,7 +19,7 @@
 
         <div class="informacao-pagina">
             <div class="fornecedor-listar">
-                <table border="1" class="tabela">
+                <table border="1">
                     <thead>
                         <tr>
                             <th>Nome:</th>
@@ -28,8 +28,8 @@
                             <th>E-mail:</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($fornecedores as $fornecedor)
+                    @foreach ($fornecedores as $fornecedor)
+                        <tbody class="tbody-list">
                             <tr>
                                 <td>{{ $fornecedor->nome }}</td>
                                 <td>{{ $fornecedor->site }}</td>
@@ -40,8 +40,31 @@
 
                                 <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
                             </tr>
-                        @endforeach
-                    </tbody>
+                            <tr>
+                                <td colspan="6">
+                                    <p>Lista de produtos</p>
+                                    <table class="tb-fornecedor">
+                                        <thead>
+                                            <tr>
+                                                <th>ID:</th>
+                                                <th>Nome:</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach ($fornecedor->produtos as $key => $produto)
+                                                <tr>
+                                                    <td>{{ $produto->id }} </td>
+                                                    <td>{{ $produto->nome }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    @endforeach
                 </table>
                 {{ $fornecedores->appends($request)->links() }}
                 <br>

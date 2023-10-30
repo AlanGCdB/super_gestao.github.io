@@ -40,6 +40,7 @@
                         <th>Unidade de medidas:</th>
                         <td>{{ $produto->unidade_id }}</td>
                     </tr>
+
                 </table>
             </div>
         </div>
